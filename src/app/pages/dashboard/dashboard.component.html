@@ -1,14 +1,108 @@
-<mat-sidenav-container class="example-container">
-  <mat-sidenav mode="side" opened>
-    <mat-nav-list>
-      <mat-list-item>Dashboard</mat-list-item>
-      <mat-list-item>Usuarios</mat-list-item>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">Bienvenido Admin</mat-toolbar>
-    <div class="content">
-      <h2>Panel de Administración</h2>
-    </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { RouterModule } from '@angular/router';
+
+@Component({
+  selector: 'app-dashboard',
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule
+  ],
+  template: `
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav mode="side" opened class="sidenav">
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list>
+          <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+          </a>
+          <a mat-list-item routerLink="/dashboard/profile" routerLinkActive="active-link">
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+          </a>
+        </mat-nav-list>
+      </mat-sidenav>
+
+      <mat-sidenav-content>
+        <mat-toolbar color="primary">Dashboard</mat-toolbar>
+
+        <div class="content">
+          <router-outlet></router-outlet>
+          <h1>Bienvenido al Dashboard</h1>
+
+          <div class="cards-container">
+            <mat-card class="card">
+              <mat-card-header>
+                <mat-card-title>Card 1</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                Contenido de la tarjeta 1.
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="card">
+              <mat-card-header>
+                <mat-card-title>Card 2</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                Contenido de la tarjeta 2.
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="card">
+              <mat-card-header>
+                <mat-card-title>Card 3</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                Contenido de la tarjeta 3.
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  `,
+  styles: [`
+    .sidenav-container {
+      height: 100vh;
+    }
+
+    .sidenav {
+      width: 250px;
+    }
+
+    .content {
+      padding: 16px;
+    }
+
+    .cards-container {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      flex: 1 1 250px;
+    }
+
+    .active-link {
+      font-weight: bold;
+      color: #1976d2;
+    }
+  `]
+})
+export class DashboardComponent {}

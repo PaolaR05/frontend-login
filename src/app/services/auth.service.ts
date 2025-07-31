@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 
-}
 
 export class AuthService {
 
@@ -21,3 +20,4 @@ export class AuthService {
     return localStorage.getItem('token');
   }
   
+}

@@ -40,7 +40,7 @@ export class LoginComponent {
     this.auth.login(this.loginForm.value).subscribe({
       next: (res) => {
         localStorage.setItem('token', res.token);
-        if (res.role === 'Admin') {
+        if (res.role === 'Admin'|| res.role === 'Tecnico') {
           this.router.navigate(['/dashboard']);
         }
       },
